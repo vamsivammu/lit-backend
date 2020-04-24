@@ -29,7 +29,7 @@ app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
     next();
 });
-const port = 5000
+const port = process.env.PORT || 5000
 var msgs = ['Ahh, sanka naaku, naa daggara levu', 'naa daggara levu ra hooka','dhoola theerindha','naa daggara levu ra macha,poraa reyy', 'neeku kaavalsina card, na gu lo undhi kaavaala']
 const serv = app.listen(port)
 const io = require('socket.io').listen(serv,{origins:'http://localhost:4200'})

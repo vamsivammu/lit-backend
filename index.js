@@ -4,20 +4,15 @@ const http = require('http')
 const app = express()
 const cors = require('cors')
 const bp = require('body-parser')
-const admin = require('firebase-admin')
-const cred = require('./litgame.json')
-admin.initializeApp({
-    databaseURL:"https://litgame-b79a3.firebaseio.com",
-    credential:admin.credential.cert(cred)
-})
-const firestore = admin.firestore()
-const axios = require('axios')
+
 app.use(bp.json())
 app.use(cors())
 var msgs = ['Ahh, sanka naaku, naa daggara levu', 'naa daggara levu ra hooka','dhoola theerindha','naa daggara levu ra macha,poraa reyy', 'neeku kaavalsina card, na gu lo undhi kaavaala']
 const serv = http.createServer(app)
 const io = socket(serv)
-serv.listen(5000)
+const port = process.env.PORT|| 5000
+console.log(port)
+serv.listen(port)
 
 var rooms = []
 var participants = []
