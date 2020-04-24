@@ -13,8 +13,6 @@ const io = socket.listen(serv)
 
 const port = process.env.PORT|| 5000
 console.log(port)
-serv.listen(port)
-
 var rooms = []
 var participants = []
 var games = []
@@ -553,4 +551,7 @@ io.sockets.on('connection',(socket)=>{
     })
 
 })
+serv.listen(port)
+
+
 
