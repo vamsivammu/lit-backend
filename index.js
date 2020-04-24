@@ -9,7 +9,8 @@ app.use(bp.json())
 app.use(cors())
 var msgs = ['Ahh, sanka naaku, naa daggara levu', 'naa daggara levu ra hooka','dhoola theerindha','naa daggara levu ra macha,poraa reyy', 'neeku kaavalsina card, na gu lo undhi kaavaala']
 const serv = http.createServer(app)
-const io = socket.listen(serv,{origins:'*:*'})
+const io = socket.listen(serv)
+
 const port = process.env.PORT|| 5000
 console.log(port)
 serv.listen(port)
@@ -268,6 +269,7 @@ function check_for_zero_cards(room_id,team_ids,other_team_ids,team,other_team,so
 io.sockets.on('connection',(socket)=>{
     console.log('connected',socket.id)
     socket.on('disconnect',()=>{
+        console.log(socket.id)
         if(socket.room_id){
             if(games[socket.room_id]){
                 games[socket.room_id].sockets[socket.id].status = 'offline'
