@@ -272,12 +272,18 @@ io.sockets.on('connection',(socket)=>{
             if(games[socket.room_id]){
                 games[socket.room_id].sockets[socket.id].status = 'offline'
                 io.to(socket.room_id).emit('member_disconnected',{sockets:games[socket.room_id].sockets})   
-            }else if(rooms[room_id]){
+            }else if(rooms[socket.room_id]){
                 try{
+                    
                     delete rooms[socket.room_id][socket.id]
-                    delete uids[socket.uid]    
+                      
                 }catch(e){
 
+                }
+                try{
+                    delete uids[socket.uid]  
+                }catch(e){
+                    
                 }
 
                 if(Object.keys(rooms[socket.room_id]).length==0){
