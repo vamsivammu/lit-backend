@@ -17,8 +17,9 @@ var rooms = []
 var participants = []
 var games = []
 var uids = []
+var streng = {}
 function create_room(room_id,socket){
-
+    streng[room_id] = 6
     rooms[room_id] = {[socket.id]:{name:socket.name,room:room_id,uid:socket.uid,status:'online'}}
     uids[socket.uid] = {socket_id:socket.id,room_id:room_id,status:'created_room'}
 }
